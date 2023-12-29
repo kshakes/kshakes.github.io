@@ -62,10 +62,11 @@ img{
 
 #contact-details{
     display: flex;
-    padding-left: 90px;
+    padding-left: 80px;
 }
 
 #contact-details img{
     width: 30px;
     height: 30px;
+    padding-left: 10px;
 }
