@@ -1,0 +1,86 @@
+*{
+    font-family: sans-serif;
+}
+
+.top-container{
+    display: flex;
+    background: url("./images/space-background.jpg");
+    height: 800px;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+body, html{
+    margin: 0;
+    padding: 0;
+}
+
+#introduction, #my-passion{
+    color: white;
+    text-align: center;
+    margin: 20px;
+}
+
+#introduction{
+    font-size: 64px;
+}
+
+#my-passion{
+    font-size: 36px;
+}
+
+#profile-picture{
+    border-radius: 50%;
+}
+
+h1{
+    color: #005ea6 !important;
+}
+
+h2{
+    color: #5c99fa !important;
+}
+
+.bottom-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.skills-container{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: left;
+}
+
+.skills-image{
+    display: flex;
+    flex-direction: row;
+    margin-left: 3rem;
+}
+
+.skills-image > img{
+    width: 200px;
+}
+
+.skills-container > *{
+    padding: 1.5rem;
+}
+
+.text-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.text-container > *{
+    text-align: left;
+    text-wrap: wrap;
+}
+
+
+
