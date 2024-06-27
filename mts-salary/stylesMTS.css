@@ -4,6 +4,7 @@
     align-items: center;
     flex-direction: column;
     margin: 5rem;
+    min-width: 400px;
 }
 
 .hourly-rate-container, .days-worked-container, .friOT-worked-container, .satOT-worked-container{
