@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5rem;
+}
+
+.hourly-rate-container, .days-worked-container, .friOT-worked-container, .satOT-worked-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+    width: 500px;
+    height: 100px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+input {
+    height: 30px;
+    font-size: 24px;
+}
+
+.input-box {
+    width: 100%;
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+}
+
+.calculate-salary{
+    width: 19rem;
+    height: 50px;
+    margin-top: 1rem;
+}
