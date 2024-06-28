@@ -23,6 +23,6 @@ $(".calculate-salary").click(function(){
         currency: 'GBP',
       });
 
-    $('#totalPay').text(formattedNumber); 
+    $('#totalPay').text(formattedNumber + "pm"); 
   }  
 })
