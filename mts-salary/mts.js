@@ -22,7 +22,7 @@ $(".calculate-salary").click(function(){
         style: 'currency',
         currency: 'GBP',
       });
-
+    $('.show-salary-container').css('display', 'flex');
     $('#totalPay').text(formattedNumber + "pm"); 
   }  
 })
