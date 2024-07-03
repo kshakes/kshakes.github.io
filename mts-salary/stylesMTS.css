@@ -82,6 +82,7 @@ input {
 }
 #totalPay{
     margin-top: 1rem;
+    color: lightgreen;
 }
 #preTaxPay{
     color: orange;
@@ -95,7 +96,7 @@ input {
 
 .show-salary-container{
     display: flex;
-    height: 250px;
+    height: 275px;
     width: 300px;
     border: 3px solid white;
     z-index: 1;
@@ -106,9 +107,9 @@ input {
 }
 .show-salary-container > h2{
     margin-top: 1rem;
-    color: lightgreen;
 }
 .backButton{
+    height: 3rem;
     width: 100%;
     margin-top: 1rem;
     font-size: 16px;

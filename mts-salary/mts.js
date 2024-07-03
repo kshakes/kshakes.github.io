@@ -30,6 +30,7 @@ $(".calculate-salary").click(function(){
     animateValue(nIDeductObj, 0, nationalInsurance, 2000);
     animateValue(taxDeductObj, 0, tax, 2000);
     animateValue(totalPayObj, 0, postTax, 2000);
+    preTaxPayObj.insertAdjacentHTML('afterbegin', 'Pre Tax');
   }  
 })
 
@@ -38,7 +39,13 @@ function animateValue(obj, start, end, duration) {
   const step = (timestamp) => {
     if (!startTimestamp) startTimestamp = timestamp;
     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    obj.innerHTML = "£" + Math.round((progress * (end - start) + start) * 100) / 100;
+    let value = progress * (end - start) + start;
+
+    if (value === Math.floor(value)){
+      obj.innerHTML = "0";
+    }else{
+      obj.innerHTML = "£" + (Math.round(value * 100) / 100).toFixed(2);
+    }
     if (progress < 1) {
       window.requestAnimationFrame(step);
     }
@@ -49,3 +56,4 @@ function animateValue(obj, start, end, duration) {
 $(".backButton").click(function(){
   $('.show-salary-container').fadeOut("slow"); // make it disappear
 });
+
