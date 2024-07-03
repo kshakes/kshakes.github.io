@@ -83,23 +83,41 @@ input {
 #totalPay{
     margin-top: 1rem;
 }
+#preTaxPay{
+    color: orange;
+}
+#nIDeduct{
+    color: red;
+}
+#taxDeduct{
+    color: red;
+}
 
 .show-salary-container{
     display: flex;
-    height: 100px;
+    height: 250px;
     width: 300px;
     border: 3px solid white;
     z-index: 1;
     position: absolute;
     align-items: center;
     flex-direction: column;
+    background-color: #2c99ec;
 }
 .show-salary-container > h2{
     margin-top: 1rem;
     color: lightgreen;
 }
-
-
+.backButton{
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 16px;
+    background-color: #0065ad;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
 
 @media (max-width: 600px) {
     .container {
