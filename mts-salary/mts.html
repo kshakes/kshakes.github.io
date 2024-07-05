@@ -62,12 +62,23 @@
                     </div>
                 </div>
             </div>
+            <div class="pension-container">
+                <div class="content">
+                    <div class="title">
+                        <h2>Pension Contribution %</h2>
+                    </div>
+                    <div class="input-box">
+                        <input id="pension-text" type="text">
+                    </div>
+                </div>
+            </div>
             <button class="calculate-salary">Calculate</button>
             <div style="display: none;" class="show-salary-container">
                 <h1>You will take home</h1>
                 <h2>Gross Pay: <span id="preTaxPay"></span> </h2>
                 <h2>National Insurance: <span id="nIDeduct"></span> </h2>
                 <h2>Tax: <span id="taxDeduct"></span> </h2>
+                <h2 id="pension-parent">Pension: <span id="pension"></span> </h2>
                 <h2>Net Pay: <span id="totalPay"></span> </h2>
                 <button class="backButton">Back</button>
             </div>

@@ -12,13 +12,8 @@ $(".calculate-salary").click(function(){
     var extraPay = parseFloat($("#extra-pay-text").val()) || 0;
 
     var preTaxPay = ((260/12) * (rate) * 9) + fridayOTPay + saturdayOTPay + sundayOTPay + extraPay;
-    // const preTaxFormatted = preTaxPay.toLocaleString('en-GB', {
-    //   style: 'currency',
-    //   currency: 'GBP',
-    // });
     var tax = (preTaxPay - allowance) * 0.20;
     var nationalInsurance = (preTaxPay - allowance) * 0.08;
-
     var postTax = preTaxPay - tax - nationalInsurance;
 
     $('.show-salary-container').css('display', 'flex');
@@ -26,11 +21,25 @@ $(".calculate-salary").click(function(){
     const nIDeductObj = document.getElementById("nIDeduct");
     const taxDeductObj = document.getElementById("taxDeduct");
     const totalPayObj = document.getElementById("totalPay");
+    const pensionContObj = document.getElementById("pension");
+
+    var pensionText = $("#pension-text").val();
+    if ($.trim(pensionText) === '' || $.trim(pensionText) === '0'){
+      $('#pension-parent').hide("fast");
+      $('.show-salary-container').css("height", "275px");
+    }
+    else{
+      var pensionContribution = ($("#pension-text").val() / 100) * preTaxPay;
+      postTax -= pensionContribution;
+      $('#pension-parent').show();
+      animateValue(pensionContObj, 0, pensionContribution, 2000);
+      $('.show-salary-container').css("height", "300px");
+    }
+
     animateValue(preTaxPayObj, 0, preTaxPay, 2000);
     animateValue(nIDeductObj, 0, nationalInsurance, 2000);
     animateValue(taxDeductObj, 0, tax, 2000);
     animateValue(totalPayObj, 0, postTax, 2000);
-    preTaxPayObj.insertAdjacentHTML('afterbegin', 'Pre Tax');
   }  
 })
 
