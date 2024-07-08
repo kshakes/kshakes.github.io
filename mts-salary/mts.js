@@ -1,9 +1,14 @@
 var allowance = 1047.50;
-//possible pension pay of 7% ? 
+var nonNumericRegex = /[^0-9]/;
 $(".calculate-salary").click(function(){
   var rate = $("#hourly-rate-text").val();
-  if ($.trim(rate) === '') {
-    $('#totalPay').text("Hourly Rate Not Given");
+  if (nonNumericRegex.test(rate) ||  $.trim(rate) === '') {
+    console.log("Hourly Rate Not Given");
+    $('body').toggleClass("shake");
+    setTimeout(function(){
+      $('body').toggleClass("shake");
+    }, 500);
+
   }else{
     rate = parseFloat(rate);
     var fridayOTPay = $("#fridayOT-worked-text").val() * (rate * 1.33);
