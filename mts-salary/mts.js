@@ -1,5 +1,5 @@
 var allowance = 1047.50;
-var nonNumericRegex = /[^0-9]/;
+var nonNumericRegex = /[^0-9.]/;
 $(".calculate-salary").click(function(){
   var rate = $("#hourly-rate-text").val();
   if (nonNumericRegex.test(rate) ||  $.trim(rate) === '') {
