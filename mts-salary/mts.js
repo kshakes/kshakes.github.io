@@ -1,8 +1,11 @@
+/* Do more in depth calculations for different tax brackets 
+and salaries that dont fall into a tax bracket */
+
 var allowance = 1047.50;
 var nonNumericRegex = /[^0-9.]/;
 $(".calculate-salary").click(function(){
   var rate = $("#hourly-rate-text").val();
-  if (nonNumericRegex.test(rate) ||  $.trim(rate) === '') {
+  if (nonNumericRegex.test(rate) ||  $.trim(rate) === '' || $.trim(rate) === "0") {
     console.log("Hourly Rate Not Given");
     $('body').toggleClass("shake");
     setTimeout(function(){
@@ -38,9 +41,11 @@ $(".calculate-salary").click(function(){
       postTax -= pensionContribution;
       $('#pension-parent').show();
       animateValue(pensionContObj, 0, pensionContribution, 2000);
-      $('.show-salary-container').css("height", "300px");
+      $('.show-salary-container').css("height", "325px");
     }
-
+    if (nationalInsurance >= 100){
+      $('.show-salary-container').css("width", "325px");
+    }
     animateValue(preTaxPayObj, 0, preTaxPay, 2000);
     animateValue(nIDeductObj, 0, nationalInsurance, 2000);
     animateValue(taxDeductObj, 0, tax, 2000);
@@ -55,9 +60,7 @@ function animateValue(obj, start, end, duration) {
     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
     let value = progress * (end - start) + start;
 
-    if (value === Math.floor(value)){
-      obj.innerHTML = "0";
-    }else{
+    if (value !== Math.floor(value)){
       obj.innerHTML = "£" + (Math.round(value * 100) / 100).toFixed(2);
     }
     if (progress < 1) {
