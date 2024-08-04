@@ -1,0 +1,49 @@
+ul{
+    list-style-type: none;
+}
+
+.post-container{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+    margin-top: 2rem;
+    flex-direction: row;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+#editButton{
+    align-self: flex-start;
+}
+
+.shorts-list {
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+}
+
+.short-item {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+    align-items: center; /* Align items vertically in the center */
+    margin-bottom: 10px; /* Space between list items */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.short-item h2, .short-item p, .short-item small, .short-item a {
+    margin: 0 10px 0 0; /* Space between elements */
+    white-space: nowrap; /* Prevent text from wrapping within elements */
+}
+
+.short-item a.edit, .short-item a.delete {
+    margin-left: auto; /* Push edit and delete links to the right end */
+}
+  
+  
