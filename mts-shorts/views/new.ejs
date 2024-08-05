@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTS Shorts</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+    <body>
+        <h1 class="heading"><%=heading%></h1>
+        <form method="POST" action="/shorts">
+            <div class="new-post-container">
+                <select id="drop" name="drop">
+                    <option>Bham West</option>
+                    <option>Worcester</option>
+                    <option>Black Country</option>
+                    <option>Stafford</option>
+                    <option>Shrewsbury</option>
+                    <option>Bham Central</option>
+                    <option>Stoke South</option>
+                    <option>Reddich</option>
+                    <option>Bham North</option>
+                    <option>Burton</option>
+                    <option>Stoke North</option>
+                </select>
+                <input type="text" name="size" id="size" placeholder="Tyre Size">
+                <input type="text" name="rating" id="rating" placeholder="Tyre Rating">
+                <input type="text" name="brand" id="brand" placeholder="Tyre Brand">
+                <input type="text" name="type" id="type" placeholder="Tyre Type">
+                <input type="text" name="quantity" id="quantity" placeholder="Quantity">
+                <button type="submit"> <%=submit%> </button>
+            </div>
+        </form>
+    </body>
+</html>

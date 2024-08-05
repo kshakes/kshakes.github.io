@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Site</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+    <body>
+        <div style="text-align: center;">
+            <h1>MTS Shorts</h1>
+            <a href="/shorts/new">Create a new post!</a>
+            <%if (numOfShorts != 0){ %>
+                <p>Total Shorts Reported - <%=numOfShorts%></p>
+                <p>Total Shorts Resolved - <%=shortsResolved%></p>
+                <p>Current Shorts - <%=numOfShorts-shortsResolved%></p>
+            <%} %>
+            
+        </div>
+
+        <ul>
+            <% shorts.forEach(short => { %>
+                <li>
+                    <div class="post-container">
+                        <h2><%= short.drop %></h2>
+                        <p> <%= short.size %></p>
+                        <p> <%= short.rating %></p>
+                        <p> <%= short.brand %></p>
+                        <p> <%= short.type %></p>
+                        <p> - Quantity - <%= short.quantity %></p>
+                        <div class="button-container">
+                            <form action="/shorts/<%=short.id%>/edit">
+                                <input type="submit" value="Edit">
+                            </form>
+                            <form method="POST" action="/shorts/<%=short.id %>/delete">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </body>
+</html>
