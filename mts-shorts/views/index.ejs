@@ -8,16 +8,16 @@
 </head>
     <body>
         <div style="text-align: center;">
+            <p style="color: rgb(255, 68, 68)">Disclamer! Editing drops can give odd results. Try and get it correct so this doesn't occur.</p>
             <h1>MTS Shorts</h1>
-            <a href="/shorts/new">Create a new post!</a>
+            <a href="/shorts/new">Create a new short!</a>
             <%if (numOfShorts != 0){ %>
                 <p>Total Shorts Reported - <%=numOfShorts%></p>
                 <p>Total Shorts Resolved - <%=shortsResolved%></p>
                 <p>Current Shorts - <%=numOfShorts-shortsResolved%></p>
             <%} %>
-            
         </div>
-
+        <hr>
         <ul>
             <% shorts.forEach(short => { %>
                 <li>
