@@ -19,15 +19,18 @@
         </div>
         <hr>
         <ul>
-            <% shorts.forEach(short => { %>
+            <% for (let drop in shorts[0]) { %>
                 <li>
                     <div class="post-container">
-                        <h2><%= short.drop %></h2>
-                        <p> <%= short.size %></p>
-                        <p> <%= short.rating %></p>
-                        <p> <%= short.brand %></p>
-                        <p> <%= short.type %></p>
-                        <p> - Quantity - <%= short.quantity %></p>
+                    <h2><%= drop%></h2>
+                    <% shorts[0][drop].forEach(short => { %>
+                        <div class="tyre-details">
+                            <p> <%= short.size %></p>
+                            <p> <%= short.rating %></p>
+                            <p> <%= short.brand %></p>
+                            <p> <%= short.type %></p>
+                            <p> - Quantity - <%= short.quantity %></p>
+                        </div>
                         <div class="button-container">
                             <form action="/shorts/<%=short.id%>/edit">
                                 <input type="submit" value="Edit">
@@ -37,8 +40,9 @@
                             </form>
                         </div>
                     </div>
-                </li>
-            <% }) %>
+                    <%})%>
+                </li>   
+            <% } %>
         </ul>
     </body>
 </html>

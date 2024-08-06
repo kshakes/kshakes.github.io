@@ -67,3 +67,16 @@ ul {
 .new-post-container input, button, select{
     width: 30%;
 }
+
+.tyre-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.tyre-details p {
+    margin: 5px 0;
+    white-space: pre;
+}
