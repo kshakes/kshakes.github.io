@@ -119,23 +119,25 @@ app.post("/shorts/:id/update", (req, res) => {
 })
 
 app.post("/shorts/:id/delete", (req, res) => {
-    //fix the ability to delete
-
+    const shortId = req.params.id;
     let foundShort = null;
 
     for (const location in shorts[0]) {
-        console.log(location);
         if (shorts[0].hasOwnProperty(location)) {
             const locationShorts = shorts[0][location];
+            const index = locationShorts.findIndex(s => s.id === shortId);
 
-            if (foundShort) break;
-        }
-        else{
-            console.log("Not found");
+            if (index !== -1) {
+                locationShorts.splice(index, 1);
+                foundShort = true;
+                break;
+            }
         }
     }
-    shorts = shorts.filter(s => s.id !== req.params.id);
-
-    shortsResolved++;
-    res.redirect("/");
+    if (foundShort) {
+        shortsResolved++;
+        res.redirect("/");
+    } else{
+        res.status(404).send("Short not found");
+    }
 });
