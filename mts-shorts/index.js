@@ -30,6 +30,7 @@ app.listen(port, (req, res) => {
 app.get("/", (req, res) => {
     res.render("index", {shorts, numOfShorts, shortsResolved});
     console.log("Total Number of Shorts -> " + numOfShorts);
+    console.log(shorts);
 })
 
 app.get("/shorts/new", (req, res) => {
@@ -51,42 +52,88 @@ app.post("/shorts", (req, res) => {
         quantity: req.body.quantity,
     };
     shorts[0][req.body.drop].push(short);
-    console.log(shorts);
     console.log(shorts[0][req.body.drop]);
     numOfShorts++;
     res.redirect("/");
 });
 
 app.get("/shorts/:id/edit", (req, res) => {
-    const short = shorts.find(s => s.id === req.params.id);
-    res.render("edit", {
-        short,
-        heading: "Edit Short",
-        submit: "Edit Short",
-    });
+    const shortId = req.params.id;
+    let foundShort = null;
+
+    for (const location in shorts[0]) {
+        if (shorts[0].hasOwnProperty(location)) {
+            const locationShorts = shorts[0][location];
+            foundShort = locationShorts.find(s => s.id === shortId);
+            if (foundShort) {
+                break;
+            }
+        }
+    }
+
+    if (foundShort) {
+        res.render("edit", {
+            short: foundShort,
+            heading: "Edit Short",
+            submit: "Edit Short",
+        });
+    } else {
+        res.status(404).send("Short not found");
+    }
 });
 
 app.post("/shorts/:id/update", (req, res) => {
-    //fix the ability to edit
-    const { id } = req.params;
+    const {id} = req.params;
     const {drop, size, rating, brand, type, quantity} = req.body;
-    const short = shorts.find(s => s.id === id);
 
-    short.drop = drop;
-    short.size = size;
-    short.rating = rating;
-    short.brand = brand;
-    short.type = type;
-    short.quantity = quantity;
+    let foundShort = null;
+    let currentDrop = null;
 
-    res.redirect("/");
+    for (const location in shorts[0]) {
+        if (shorts[0].hasOwnProperty(location)) {
+            const locationShorts = shorts[0][location];
+            foundShort = locationShorts.find(s => s.id === id);
+            
+            if (foundShort){
+                currentDrop = location;
+                break;
+            } 
+        }
+    }
+    if (foundShort) {
+        shorts[0][currentDrop] = shorts[0][currentDrop].filter(s => s.id !== id);
+
+        foundShort.drop = drop;
+        foundShort.size = size;
+        foundShort.rating = rating;
+        foundShort.brand = brand;
+        foundShort.type = type;
+        foundShort.quantity = quantity;
+
+        shorts[0][drop].push(foundShort);
+
+        res.redirect("/");
+    } else{
+        res.status(404).send("Short not found");
+    }  
 })
 
 app.post("/shorts/:id/delete", (req, res) => {
     //fix the ability to delete
-    const short = shorts.find(s => s.id === req.params.id);
-    console.log(short);
 
+    let foundShort = null;
+
+    for (const location in shorts[0]) {
+        console.log(location);
+        if (shorts[0].hasOwnProperty(location)) {
+            const locationShorts = shorts[0][location];
+
+            if (foundShort) break;
+        }
+        else{
+            console.log("Not found");
+        }
+    }
     shorts = shorts.filter(s => s.id !== req.params.id);
 
     shortsResolved++;
