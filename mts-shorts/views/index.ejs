@@ -8,7 +8,6 @@
 </head>
     <body>
         <div style="text-align: center;">
-            <p style="color: rgb(255, 68, 68)">Disclamer! Editing drops can give odd results. Try and get it correct so this doesn't occur.</p>
             <h1>MTS Shorts</h1>
             <a href="/shorts/new">Create a new short!</a>
             <%if (numOfShorts != 0){ %>
@@ -25,10 +24,8 @@
                     <h2><%= drop%></h2>
                     <% shorts[0][drop].forEach(short => { %>
                         <div class="tyre-details">
-                            <p> <%= short.size %></p>
-                            <p> <%= short.rating %></p>
-                            <p> <%= short.brand %></p>
-                            <p> <%= short.type %></p>
+                            <p> <%= short.location %> > </p>
+                            <p> <%= short.info %></p>
                             <p> - Quantity - <%= short.quantity %></p>
                         </div>
                         <div class="button-container">

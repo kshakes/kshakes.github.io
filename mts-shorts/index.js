@@ -29,8 +29,8 @@ app.listen(port, (req, res) => {
 
 app.get("/", (req, res) => {
     res.render("index", {shorts, numOfShorts, shortsResolved});
-    console.log("Total Number of Shorts -> " + numOfShorts);
-    console.log(shorts);
+    //console.log("Total Number of Shorts -> " + numOfShorts);
+    //console.log(shorts);
 })
 
 app.get("/shorts/new", (req, res) => {
@@ -44,15 +44,13 @@ app.post("/shorts", (req, res) => {
     const id = Date.now().toString();
     const short = {
         id: id,
+        location: req.body.location,
         drop: req.body.drop,
-        size: req.body.size,
-        rating: req.body.rating,
-        brand: req.body.brand,
-        type: req.body.type,
+        info: req.body.info,
         quantity: req.body.quantity,
     };
     shorts[0][req.body.drop].push(short);
-    console.log(shorts[0][req.body.drop]);
+    //console.log(shorts[0][req.body.drop]);
     numOfShorts++;
     res.redirect("/");
 });
@@ -84,7 +82,7 @@ app.get("/shorts/:id/edit", (req, res) => {
 
 app.post("/shorts/:id/update", (req, res) => {
     const {id} = req.params;
-    const {drop, size, rating, brand, type, quantity} = req.body;
+    const {drop, location, info, quantity} = req.body;
 
     let foundShort = null;
     let currentDrop = null;
@@ -104,10 +102,8 @@ app.post("/shorts/:id/update", (req, res) => {
         shorts[0][currentDrop] = shorts[0][currentDrop].filter(s => s.id !== id);
 
         foundShort.drop = drop;
-        foundShort.size = size;
-        foundShort.rating = rating;
-        foundShort.brand = brand;
-        foundShort.type = type;
+        foundShort.location = location;
+        foundShort.info = info;
         foundShort.quantity = quantity;
 
         shorts[0][drop].push(foundShort);

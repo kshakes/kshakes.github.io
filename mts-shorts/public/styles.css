@@ -2,8 +2,9 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-input, h2, h1, p, a, select, button{
+input, h2, h1, p, a, select, button, ::placeholder{
     color: white;
+    opacity: 1;
 }
 
 input, select, button{
@@ -79,4 +80,14 @@ ul {
 .tyre-details p {
     margin: 5px 0;
     white-space: pre;
+}
+
+@media (max-width: 700px){
+    .new-post-container > *{
+        width: 80%;
+    }
+    input{
+        min-width: 80%;
+    }
+    
 }
