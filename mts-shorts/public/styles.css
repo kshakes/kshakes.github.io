@@ -65,7 +65,7 @@ ul {
     gap: 2rem;
 }
 
-.new-post-container input, button, select{
+.new-post-container .button-container input, button, select{
     width: 30%;
 }
 
@@ -87,7 +87,7 @@ ul {
         width: 80%;
     }
     input{
-        min-width: 80%;
+        min-width: 78%;
     }
     
 }

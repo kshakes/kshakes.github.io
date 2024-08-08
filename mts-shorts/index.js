@@ -1,5 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
+import fs from "fs";
+
 const port = 3000;
 const app = express();
 
@@ -23,14 +25,29 @@ let shorts = [{
 let numOfShorts = 0;
 let shortsResolved = 0;
 
-app.listen(port, (req, res) => {
-    console.log(`Listening on localhost:${port}`);
-});
+fs.readFile("shorts.json", (error, data) => {
+    if (error){
+        console.error(error);
+        throw error;
+    } else{
+        shorts = JSON.parse(data);
+    }
+    app.listen(port, (req, res) => {
+        console.log(`Listening on localhost:${port}`);
+    });
+    
+})
 
 app.get("/", (req, res) => {
     res.render("index", {shorts, numOfShorts, shortsResolved});
-    //console.log("Total Number of Shorts -> " + numOfShorts);
-    //console.log(shorts);
+    const data = JSON.stringify(shorts);
+    fs.writeFileSync("shorts.json", data, (error) => {
+        if (error){
+            console.error(error);
+            throw error;
+        }
+    })
+    console.log(JSON.stringify(shorts));
 })
 
 app.get("/shorts/new", (req, res) => {
@@ -49,9 +66,21 @@ app.post("/shorts", (req, res) => {
         info: req.body.info,
         quantity: req.body.quantity,
     };
-    shorts[0][req.body.drop].push(short);
-    //console.log(shorts[0][req.body.drop]);
-    numOfShorts++;
+    if (short.location === "reset" || short.info === "reset" || short.quantity === "reset"){
+        fs.readFile("resetShorts.json", (error, data) => {
+            if (error){
+                console.error(error);
+                throw error;
+            } else{
+                shorts = JSON.parse(data);
+            }
+        })
+    }else{
+        shorts[0][req.body.drop].push(short);
+        //console.log(shorts[0][req.body.drop]);
+        numOfShorts++;
+    }
+    
     res.redirect("/");
 });
 

@@ -8,6 +8,7 @@
 </head>
     <body>
         <div style="text-align: center;">
+            <p style="color: red">Number of shorts is inconsistent with the real amount. This occurs when the server restarts and the value isn't saved. This will be fixed soon</p>
             <h1>MTS Shorts</h1>
             <a href="/shorts/new">Create a new short!</a>
             <%if (numOfShorts != 0){ %>
@@ -18,7 +19,7 @@
         </div>
         <hr>
         <ul>
-            <% for (let drop in shorts[0]) { %>
+            <% for (let drop in shorts[0]) { %> <%# Has the drop names %>
                 <li>
                     <div class="post-container">
                     <h2><%= drop%></h2>
@@ -33,7 +34,7 @@
                                 <input type="submit" value="Edit">
                             </form>
                             <form method="POST" action="/shorts/<%=short.id %>/delete">
-                                <input type="submit" value="Delete">
+                                <input type="submit" value="Resolve">
                             </form>
                         </div>
                     </div>
