@@ -93,6 +93,12 @@ h2{
     }
 }
 
+/*Carousel Adjustments*/
+.carousel-caption > p{
+    color: black;
+}
 
-
-
+.project-desc{
+    width: 35rem;
+    text-wrap: wrap;
+}
