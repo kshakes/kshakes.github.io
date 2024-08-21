@@ -3,7 +3,7 @@ $(document).ready(function() {
         var bgImage = "";
 
         if ($(this).hasClass("firstProject")) {
-            bgImage = "./images/mts-short-preview.gif";
+            bgImage = "./images/mts-shorts-preview.gif";
         } else if ($(this).hasClass("secondProject")) {
             bgImage = "./images/life-calc-preview.gif";
         } else if ($(this).hasClass("thirdProject")) {
@@ -17,6 +17,7 @@ $(document).ready(function() {
         });
 
         $(this).css("opacity", "0");
+        $(this).siblings("p").css("opacity", "0");
     });
 
     $("h3").mouseleave(function(evt) {
@@ -25,6 +26,7 @@ $(document).ready(function() {
         });
 
         $(this).css("opacity", "1");
+        $(this).siblings("p").css("opacity", "1");
     });
 });
 
