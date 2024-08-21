@@ -3,11 +3,11 @@ $(document).ready(function() {
         var bgImage = "";
 
         if ($(this).hasClass("firstProject")) {
-            bgImage = "./images/mts-short-example.gif";
+            bgImage = "./images/mts-short-preview.gif";
         } else if ($(this).hasClass("secondProject")) {
-            //bgImage = "./images/second-project-image.jpg";
+            bgImage = "./images/life-calc-preview.gif";
         } else if ($(this).hasClass("thirdProject")) {
-            //bgImage = "./images/third-project-image.jpg";
+            bgImage = "./images/mts-salary-preview.gif";
         }
 
         $(this).closest(".card-cover").css({
