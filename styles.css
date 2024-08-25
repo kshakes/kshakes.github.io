@@ -49,6 +49,15 @@ h1{
 h2{
     color: #5c99fa !important;
 }
+
+a:link{
+    text-decoration: none;
+}
+
+.promo-image{
+    background-color: transparent;
+}
+
 .bottom-container{
     display: flex;
     justify-content: center;
