@@ -1,0 +1,96 @@
+.page-container{
+    display: flex;
+}
+.main-page-container{
+    display: flex;
+    min-width: 1320px;
+    background-color: grey;
+    align-items: center;
+    margin: 10rem;
+    margin-bottom: 0;
+    flex-direction: column;
+}
+.sidebar {
+    height: 100vh;
+}
+.market-overview-container{
+    width: 100%;
+    align-self:first baseline;
+}
+.market-overview{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    width: 100%;
+    background-color: blueviolet;
+}
+.market-overview .rows > div{
+    width: 15rem;
+    height: 75px;
+}
+.rows{
+    text-align: center;
+}
+.rows > p{
+    font-size: 20px;
+}
+.investmentChanges{
+    display: flex;
+    align-items: center;
+    background-color: plum;
+    overflow: hidden;
+}
+.investmentChanges > *{
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+.investmentChanges > p {
+    margin: 0;
+    line-height: 1; 
+    margin-left: 1rem;
+}
+.logoForRow{
+    width: 64px;
+    height: 64px;
+    background-color: yellow; 
+}
+
+@media (max-width: 870px){
+    .market-overview-container{
+        gap: 10px;
+    } 
+}
+@media (max-width: 600px){
+    .market-overview-container{
+        flex-direction: column;
+    } 
+}
+.market-data-list{
+    width: 100%;
+}
+.asset-header, .asset-row{
+    display:grid;
+    grid-template-columns: 7% 15% 160px 100px 100px 100px 180px 180px 210px;
+    grid-template-rows: repeat(7, 0.5fr);
+    height: 3.05rem;
+}
+.asset-header > div, .asset-row > div{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid red;
+    justify-content: end;
+    border-right: 1px solid blue;
+}
+.asset-header > div p, .asset-row > div p{
+    margin: 0;
+    line-height: 1;
+}
+.asset-row .asset-rank{
+    justify-content: center;
+}
+.asset-symbol{
+    margin-left: 1rem;
+}
+

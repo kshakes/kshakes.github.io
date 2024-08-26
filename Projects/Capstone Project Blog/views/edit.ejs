@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+<body>
+    <h1>Edit Post</h1>
+    <form method="POST" action="/posts/<%= post.id %>/update">
+        <input type="text" id="title" name="title" value="<%= post.title %>" required autocomplete="off">
+        <input type="text" id="content" name="content" value="<%= post.content %>" required autocomplete="off">
+        <button type="submit">Edit</button>
+    </form>
+</body>
+</html>

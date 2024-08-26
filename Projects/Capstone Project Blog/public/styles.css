@@ -1,0 +1,122 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+.top-container {
+    background-color: white;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    background-color: rgb(248, 249, 250);
+}
+
+.post-container{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    background-color: white;
+    padding: 15px;
+    border-radius: 25px;
+    margin-top: 25px;
+    border: rgb(236, 236, 236) 1px solid;
+}
+
+.post-container h2,
+.post-container p {
+    text-align: left;
+    width: 100%;
+}
+
+h2, a{
+    color: #5c99fa;
+}
+
+h1{
+    color: #005ea6;
+}
+
+.post-container > p{
+    margin-top: -1rem;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    gap: 30px;
+}
+
+.button-container > form > input{
+    width: 100px;
+    background-color: #5c99fa;
+    border-radius: 25px;
+    border: 1px #005ea6 solid;
+}
+
+button{
+    background-color: #5c99fa;
+    border: 1px #005ea6 solid;
+}
+
+.new-post-container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    gap: 2rem;
+}
+
+.new-post-container > input, textarea{
+    width: 50%;
+    background-color: rgb(240, 240, 240);
+    border: 1px #005ea6 solid; 
+    resize: none;
+}
+
+button, form, input{
+    color: white;
+}
+
+.new-post-container > button{
+    width: 51%;
+    height: 2rem;
+}
+
+#title{
+    height: 2rem;
+    font-size: large;
+    color: black !important;
+}
+
+#content{
+    height: 200px;
+    text-align: left; 
+    vertical-align: top;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+a:visited{
+    color: #5c99fa;
+}
