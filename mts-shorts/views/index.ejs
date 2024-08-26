@@ -19,28 +19,29 @@
         </div>
         <hr>
         <ul>
-            <% for (let drop in shorts[0]) { %> <%# Has the drop names %>
+            <% Object.keys(groupedShorts).forEach(drop => { %>
                 <li>
                     <div class="post-container">
-                    <h2><%= drop%></h2>
-                    <% shorts[0][drop].forEach(short => { %>
-                        <div class="tyre-details">
-                            <p> <%= short.location %> > </p>
-                            <p> <%= short.info %></p>
-                            <p> - Quantity - <%= short.quantity %></p>
-                        </div>
-                        <div class="button-container">
-                            <form action="/shorts/<%=short.id%>/edit">
-                                <input type="submit" value="Edit">
-                            </form>
-                            <form method="POST" action="/shorts/<%=short.id %>/delete">
-                                <input type="submit" value="Resolve">
-                            </form>
-                        </div>
+                        <h2><%= drop %></h2> <!-- This is the unique drop title -->
+                        <% groupedShorts[drop].forEach(short => { %> 
+                            <div class="tyre-details">
+                                <p> <%= short.location %> >  </p>
+                                <p><%= short.info %> - </p>
+                                <p>Quantity - <%= short.quantity %></p>
+                            </div>
+        
+                            <div class="button-container">
+                                <form action="/shorts/<%= short.id %>/edit">
+                                    <input type="submit" value="Edit">
+                                </form>
+                                <form method="POST" action="/shorts/<%= short.id %>/delete">
+                                    <input type="submit" value="Resolve">
+                                </form>
+                            </div>
+                        <% }) %>
                     </div>
-                    <%})%>
-                </li>   
-            <% } %>
+                </li>
+            <% }) %>
         </ul>
     </body>
 </html>

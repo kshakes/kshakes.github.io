@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import fs from "fs";
+import pg from 'pg';
 
 const port = 3000;
 const app = express();
@@ -9,46 +9,42 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-let shorts = [{
-    "Bham West":[],
-    "Worcester":[],
-    "Black Country":[],
-    "Stafford":[],
-    "Shrewsbury":[],
-    "Bham Central":[],
-    "Stoke South":[],
-    "Reddich":[],
-    "Bham North":[],
-    "Burton":[],
-    "Stoke North":[]
-}];
+const db = new pg.Client({
+    user: "postgres",
+    host: "localhost",
+    database: "yourdatabase",
+    password: "yourpassword",
+    port: 5432,
+});
+
+db.connect();
+
+let shortsData;
 let numOfShorts = 0;
 let shortsResolved = 0;
 
-fs.readFile("shorts.json", (error, data) => {
-    if (error){
-        console.error(error);
-        throw error;
-    } else{
-        shorts = JSON.parse(data);
-    }
-    app.listen(port, (req, res) => {
-        console.log(`Listening on localhost:${port}`);
-    });
-    
-})
+app.listen(port, () => {
+    console.log(`Listening on localhost:${port}`);
+});
 
-app.get("/", (req, res) => {
-    res.render("index", {shorts, numOfShorts, shortsResolved});
-    const data = JSON.stringify(shorts);
-    fs.writeFileSync("shorts.json", data, (error) => {
-        if (error){
-            console.error(error);
-            throw error;
-        }
-    })
-    console.log(JSON.stringify(shorts));
-})
+app.get("/", async (req, res) => {
+    try {
+        const shorts = await db.query("SELECT * FROM shorts");
+        shortsData = shorts.rows;
+
+        const groupedShorts = shortsData.reduce((acc, short) => {
+            if (!acc[short.drop]) {
+                acc[short.drop] = [];
+            }
+            acc[short.drop].push(short);
+            return acc;
+        }, {});
+
+        res.render("index", { groupedShorts, numOfShorts, shortsResolved });
+    } catch (err) {
+        console.error("Couldnt create front page: " + err);
+    }
+});
 
 app.get("/shorts/new", (req, res) => {
     res.render("new", {
@@ -57,7 +53,7 @@ app.get("/shorts/new", (req, res) => {
     });
 });
 
-app.post("/shorts", (req, res) => {
+app.post("/shorts", async (req, res) => {
     const id = Date.now().toString();
     const short = {
         id: id,
@@ -67,37 +63,37 @@ app.post("/shorts", (req, res) => {
         quantity: req.body.quantity,
     };
     if (short.location === "reset" || short.info === "reset" || short.quantity === "reset"){
-        fs.readFile("resetShorts.json", (error, data) => {
-            if (error){
-                console.error(error);
-                throw error;
-            } else{
-                shorts = JSON.parse(data);
+        try{
+            await db.query("DELETE FROM shorts");
+            } catch (err) {
+                console.log(err);
+                return res.status(500).send("Database error -> Cant delete shorts");
             }
-        })
     }else{
-        shorts[0][req.body.drop].push(short);
-        //console.log(shorts[0][req.body.drop]);
+        try{
+            await db.query(
+                "INSERT INTO shorts (id, location, drop, info, quantity) VALUES ($1, $2, $3, $4, $5)", [id, short.location, short.drop, short.info, short.quantity]);
+            } catch (err) {
+                console.log(err);
+                return res.status(500).send("Database error -> Cannot write short");
+            }
         numOfShorts++;
     }
     
     res.redirect("/");
 });
 
-app.get("/shorts/:id/edit", (req, res) => {
+app.get("/shorts/:id/edit", async (req, res) => {
     const shortId = req.params.id;
     let foundShort = null;
 
-    for (const location in shorts[0]) {
-        if (shorts[0].hasOwnProperty(location)) {
-            const locationShorts = shorts[0][location];
-            foundShort = locationShorts.find(s => s.id === shortId);
-            if (foundShort) {
-                break;
-            }
+    try{
+        const result = await db.query("SELECT * FROM shorts WHERE id = $1", [shortId]);
+        foundShort = result.rows[0];
+        } catch (err) {
+            console.log(err);
+            return res.status(500).send("Database error -> Cannot find short");
         }
-    }
-
     if (foundShort) {
         res.render("edit", {
             short: foundShort,
@@ -109,60 +105,38 @@ app.get("/shorts/:id/edit", (req, res) => {
     }
 });
 
-app.post("/shorts/:id/update", (req, res) => {
-    const {id} = req.params;
+app.post("/shorts/:id/update", async (req, res) => {
+    const id = req.params.id;
     const {drop, location, info, quantity} = req.body;
 
+    console.log(id, drop, location, info, quantity);
+
     let foundShort = null;
-    let currentDrop = null;
 
-    for (const location in shorts[0]) {
-        if (shorts[0].hasOwnProperty(location)) {
-            const locationShorts = shorts[0][location];
-            foundShort = locationShorts.find(s => s.id === id);
-            
-            if (foundShort){
-                currentDrop = location;
-                break;
-            } 
+    try{
+        const result = await db.query("SELECT * FROM shorts WHERE id = $1", [id]);
+        foundShort = result.rows[0];
+        } catch (err) {
+            console.log(err);
+            return res.status(500).send("Database error -> Cannot find short");
         }
-    }
+
     if (foundShort) {
-        shorts[0][currentDrop] = shorts[0][currentDrop].filter(s => s.id !== id);
-
-        foundShort.drop = drop;
-        foundShort.location = location;
-        foundShort.info = info;
-        foundShort.quantity = quantity;
-
-        shorts[0][drop].push(foundShort);
-
+        await db.query("UPDATE shorts SET drop = $1, location = $2, info = $3, quantity = $4 WHERE id = $5", [drop, location, info, quantity, id]);
         res.redirect("/");
     } else{
         res.status(404).send("Short not found");
     }  
 })
 
-app.post("/shorts/:id/delete", (req, res) => {
+app.post("/shorts/:id/delete", async (req, res) => {
     const shortId = req.params.id;
-    let foundShort = null;
 
-    for (const location in shorts[0]) {
-        if (shorts[0].hasOwnProperty(location)) {
-            const locationShorts = shorts[0][location];
-            const index = locationShorts.findIndex(s => s.id === shortId);
-
-            if (index !== -1) {
-                locationShorts.splice(index, 1);
-                foundShort = true;
-                break;
-            }
-        }
+    try{
+        await db.query("DELETE FROM shorts WHERE id = $1", [shortId]);
+    } catch (err){
+        console.error("Cannot delete short: " + err);
     }
-    if (foundShort) {
-        shortsResolved++;
-        res.redirect("/");
-    } else{
-        res.status(404).send("Short not found");
-    }
+    shortsResolved++;
+    res.redirect("/");
 });
