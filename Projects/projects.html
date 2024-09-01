@@ -1,97 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Explore Kyle Shakespeare's projects, including a blog website, crypto tracker, and business revision tools. These projects demonstrate skills in HTML, CSS, JavaScript, Python, and more.">
+        <meta name="keywords" content="Kyle Shakespeare, projects, programming, web development, blog, crypto tracker, business revision">
+        <meta name="author" content="Kyle Shakespeare">
+        <title>Kyle Shakespeare | Projects</title>
+        
         <link href="../styles.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <title>Projects</title>
     </head>
     <body>
-        <h1 class="text-center py-5">My Projects</h1>
+        <header>
+            <h1 class="text-center py-5">My Projects</h1>
+        </header>
 
-        <div class="album py-5 bg-body-tertiary">
-            <div class="container">
-        
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <img height="225" src="./images/blogSite.png"> <!--Add image here -->
-                    <div class="card-body">
-                      <h2>Blog Website</h2>
-                      <p class="card-text">This was a Capstone project I completed from the Udemy course <a href="https://www.udemy.com/course/the-complete-web-development-bootcamp">The Complete 2024 Web Development Bootcamp.</a> This helped me apply my EJS and API skills to make a functioning blog website.</p>
-                      <details>
-                        <summary>What was used?</summary>
-                        • HTML
-                        • CSS
-                        • EJS
-                        • API
-                        • Express.js
-                      </details>
-                      <a href="https://github.com/kshakes/kshakes.github.io/tree/main/Projects/Capstone%20Project%20Blog">Source</a>
+        <main>
+            <section class="album py-5 bg-body-tertiary">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img height="225" src="./images/blogSite.png" alt="Blog Website Project Screenshot"> 
+                                <div class="card-body">
+                                    <h2>Blog Website</h2>
+                                    <p class="card-text">This was a Capstone project I completed from the Udemy course <a href="https://www.udemy.com/course/the-complete-web-development-bootcamp" title="The Complete 2024 Web Development Bootcamp">The Complete 2024 Web Development Bootcamp</a>. This project helped me apply my EJS and API skills to create a fully functioning blog website.</p>
+                                    <details>
+                                        <summary>What was used?</summary>
+                                        <ul>
+                                            <li>HTML</li>
+                                            <li>CSS</li>
+                                            <li>EJS</li>
+                                            <li>API</li>
+                                            <li>Express.js</li>
+                                        </ul>
+                                    </details>
+                                    <a href="https://github.com/kshakes/kshakes.github.io/tree/main/Projects/Capstone%20Project%20Blog" title="View the source code on GitHub">Source</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img height="225" src="./images/apiSite.png" alt="Crypto Tracker Project Screenshot"> 
+                                <div class="card-body">
+                                    <h2>Crypto Tracker</h2>
+                                    <p class="card-text">This project is part of a larger ongoing project. It was also a capstone project provided by the same Web Development Bootcamp. The API used to fetch the data is from <a href="https://www.coingecko.com/en/api" title="CoinGecko API">CoinGecko</a>.</p>
+                                    <details>
+                                        <summary>What was used?</summary>
+                                        <ul>
+                                            <li>HTML</li>
+                                            <li>CSS</li>
+                                            <li>EJS</li>
+                                            <li>Axios</li>
+                                            <li>Public API</li>
+                                            <li>Express.js</li>
+                                        </ul>
+                                    </details>
+                                    <a href="https://github.com/kshakes/kshakes.github.io/tree/main/Projects/Capstone%20Public%20API" title="View the source code on GitHub">Source</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img height="225" src="./images/businessRevision.png" alt="Business Revision Project Screenshot"> 
+                                <div class="card-body">
+                                    <h2>Business Revision</h2>
+                                    <p class="card-text">This project helps generate exam-style Partnership Accounting, ARR, and NPV questions to improve my understanding of these topics. It also aids in the revision process by breaking down questions into step-by-step solutions.</p>
+                                    <details>
+                                        <summary>What was used?</summary>
+                                        <ul>
+                                            <li>Python</li>
+                                        </ul>
+                                    </details>
+                                    <a href="https://github.com/kshakes/Business-Revision" title="View the source code on GitHub">Source</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img height="225" src="./images/shorts.png" alt="Project Screenshot Placeholder">
+                                <div class="card-body">
+                                    <h2>MTS Stock Shortage System</h2>
+                                    <p class="card-text">This project solves a huge problem at Micheldever. As a warehouse operative, you have to get tyres from specific locations and put them where the vans will be loaded. However if we can't find the tyre, we would have to report it to stock operatives. The issue lies where the stock do not communicate whether the tyre has been found or not which creates delays. This allows the stock operatives to post the short stock so we can check as we are loading vans to know for certain what should and shouldn't be there.</p>
+                                    <details>
+                                      <summary>What was used?</summary>
+                                      <ul>
+                                          <li>HTML</li>
+                                          <li>CSS</li>
+                                          <li>EJS</li>
+                                          <li>PostgreSQL</li>
+                                          <li>Express JS</li>
+                                      </ul>
+                                    </details>
+                                    <a href="https://github.com/kshakes/kshakes.github.io/tree/6265fc9a24a1db0823569568b2958578996e4ad2/mts-shorts" title="View the source code on GitHub">Source</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img height="225" src="./images/placeholder.png" alt="Project Screenshot Placeholder">
+                                <div class="card-body">
+                                    <h2>Project Title</h2>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img height="225" src="./images/placeholder.png" alt="Project Screenshot Placeholder">
+                                <div class="card-body">
+                                    <h2>Project Title</h2>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <img height="225" src="./images/apiSite.png"> <!--Add image here -->
-                    <div class="card-body">
-                      <h2>Crypto Tracker</h2>
-                      <p class="card-text">This is a part of a larger project im working on. It has no styling except for attributes that can help separate the elements for when it comes to actually styling the website. This was also a capstone project given by the same Web Development Bootcamp. The API used to grab the data was from <a href="https://www.coingecko.com/en/api">CoinGecko</a></p>
-                      <details>
-                        <summary>What was used?</summary>
-                        • HTML
-                        • CSS
-                        • EJS
-                        • Axios
-                        • Public API
-                        • Express.js
-                      </details>
-                      <a href="https://github.com/kshakes/kshakes.github.io/tree/main/Projects/Capstone%20Public%20API">Source</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <img height="225" src="./images/businessRevision.png"> <!--Add image here -->
-                    <div class="card-body">
-                      <h2>Business Revision</h2>
-                      <p class="card-text">When I revise the same question, I end up remembering the answer before attempting it because I've answered it so many times. A way I battle this is by creating programs that create these questions. This also helps with disecting the question and having a deeper understanding of the step by step process of solving it. This project creates Partnership Accounting, ARR and NPV questions based off exam structure.</p>
-                      <details>
-                        <summary>What was used?</summary>
-                        • Python
-                      </details>
-                      <a href="https://github.com/kshakes/Business-Revision">Source</a>
-                    </div>
-                  </div>
-                </div>
-        
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <img height="225"> <!--Add image here -->
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <img height="225"> <!--Add image here -->
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <img height="225"> <!--Add image here -->
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            </section>
+        </main>
     </body>
 </html>
