@@ -111,9 +111,18 @@ a:link{
     text-wrap: wrap;
 }
 
-.card img{
+.wrapper{
+    overflow: hidden;
+}
+
+.wrapper img{
     object-fit: cover;
     width: 100%;
     overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.wrapper:hover img{
+    transform: scale(1.25);
 }
 
