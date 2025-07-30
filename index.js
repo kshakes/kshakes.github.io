@@ -4,16 +4,20 @@ $(document).ready(function() {
 
         if ($(this).hasClass("firstProject")) {
             bgImage = "./images/mts-shorts-preview.gif";
+            bgSize  = "cover";
         } else if ($(this).hasClass("secondProject")) {
-            bgImage = "./images/life-calc-preview.gif";
+            bgImage = "./images/portfolio-management-preview.gif";
+            bgSize  = "130%";
         } else if ($(this).hasClass("thirdProject")) {
             bgImage = "./images/mts-salary-preview.gif";
+            bgSize  = "cover";
         }
 
         $(this).closest(".card-cover").css({
-            "background-image": `url('${bgImage}')`,
-            "background-size": "cover",
-            "background-position": "center"
+            "background-image":  `url('${bgImage}')`,
+            "background-size":   bgSize,
+            "background-position":"center",
+            "background-repeat": "no-repeat"
         });
 
         $(this).css("opacity", "0");
