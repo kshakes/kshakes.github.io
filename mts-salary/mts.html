@@ -12,67 +12,74 @@
                 <img src="./images/logo.png" width="75px" rel="Micheldever Logo">
                 <h1>Salary Calculator</h1>
             </div>
-            <div class="hourly-rate-container">
+            <div class="hourly-rate-container input-container">
                 <div class="content">
                     <div class="title">
-                        <h2 style="margin-top: -2rem;">Hourly Rate</h2>
+                        <h3>Hourly Rate</h3>
                     </div>
                     <div class="input-box">
-                        <input id="hourly-rate-text" type="text">
+                        <input id="hourly-rate-text" type="text" placeholder="12.21">
                     </div> 
                 </div>
             </div>
-            <div class="friOT-worked-container">
+            <div class="overtime-check-container input-container">
+                <div class="content">
+                    <div class="input-box checkbox-container">
+                        <button id="has-overtime" class="btn" style="width: 50%;">Add Overtime</button>
+                    </div> 
+                </div>
+            </div>
+            <div class="friOT-worked-container input-container overtime-container">
                 <div class="content">
                     <div class="title">
-                        <h2>Friday OT Hours Done</h2>
+                        <h3>Friday OT Hours</h3>
                     </div>
                     <div class="input-box">
                         <input id="fridayOT-worked-text" type="text">
                     </div>
                 </div>
             </div>
-            <div class="satOT-worked-container">
+            <div class="satOT-worked-container input-container overtime-container">
                 <div class="content">
                     <div class="title">
-                        <h2>Saturday OT Hours Done</h2>
+                        <h3>Saturday OT Hours</h3>
                     </div>
                     <div class="input-box">
                         <input id="saturdayOT-worked-text" type="text">
                     </div>
                 </div>
             </div>
-            <div class="sunOT-worked-container">
+            <div class="sunOT-worked-container input-container overtime-container">
                 <div class="content">
                     <div class="title">
-                        <h2>Sunday OT Hours Done</h2>
+                        <h3>Sunday OT Hours</h3>
                     </div>
                     <div class="input-box">
                         <input id="sundayOT-worked-text" type="text">
                     </div>
                 </div>
             </div>
-            <div class="extra-pay-container">
+            <div class="extra-pay-container input-container">
                 <div class="content">
                     <div class="title">
-                        <h2>Extra Pay?</h2>
+                        <h3>Extra Pay?</h3>
                     </div>
                     <div class="input-box">
                         <input id="extra-pay-text" type="text">
                     </div>
                 </div>
             </div>
-            <div class="pension-container">
+            <div class="pension-container input-container">
                 <div class="content">
                     <div class="title">
-                        <h2>Pension Contribution %</h2>
+                        <h3>Pension Contribution %</h3>
                     </div>
                     <div class="input-box">
                         <input id="pension-text" type="text">
                     </div>
                 </div>
             </div>
-            <button class="calculate-salary">Calculate</button>
+            <button class="calculate-salary btn">Calculate</button>
             <div style="display: none;" class="show-salary-container">
                 <h1>You will take home</h1>
                 <h2>Gross Pay: <span id="preTaxPay"></span> </h2>
