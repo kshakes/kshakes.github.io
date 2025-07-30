@@ -4,7 +4,7 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-h1, h2, input{
+h1, h2, h3, input{
     color: white;
     font-weight: lighter;
 }
@@ -26,13 +26,17 @@ body {
 
 .container {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     min-width: 400px;
+    border: 2px solid black;
+    border-radius: 25px;
+    background-color: #1871b5;
+    box-shadow: 5px 5px #434343;
 }
 
-.hourly-rate-container, .days-worked-container, .friOT-worked-container, .satOT-worked-container{
+.input-container{
     display: flex;
     justify-content: center;
     flex-direction: column; 
@@ -64,14 +68,13 @@ input {
 
 .title {
     text-align: center;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
 }
 
-.calculate-salary{
-    width: 19rem;
+.btn{
+    width: 80%;
     height: 50px;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     max-width: 300px; 
     background-color: #2c99ec;
     border: none;
@@ -80,6 +83,12 @@ input {
     border-radius: 4px;
     cursor: pointer;
 }
+
+.btn:hover{
+    background-color: #4ea5e8;
+    animation: background-color 0.5s ease-in-out;
+}
+
 #totalPay{
     margin-top: 1rem;
     color: lightgreen;
@@ -118,7 +127,7 @@ input {
 
 @media (max-width: 600px) {
     .container {
-        min-width: 100%; 
+        min-width: 95%; 
         padding: 10px; 
     }
 
