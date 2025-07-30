@@ -1,6 +1,9 @@
 /* Do more in depth calculations for different tax brackets 
 and salaries that dont fall into a tax bracket */
 
+// Fix issue where you re-enter data after checking a salary and it doesnt work
+// Make it so it resets back to the start.
+
 var allowance = 1047.50;
 var nonNumericRegex = /[^0-9.]/;
 
@@ -30,12 +33,20 @@ $(".calculate-salary").click(function(){
     var extraPay = parseFloat($("#extra-pay-text").val()) || 0;
     var hoursWorkedPerDay = 8;
 
+    // Calculate the annual salary based on the rate and hours worked
     var preTaxPay = ((260/12) * (rate) * hoursWorkedPerDay) + fridayOTPay + saturdayOTPay + sundayOTPay + extraPay;
     var tax = (preTaxPay - allowance) * 0.20;
     var nationalInsurance = (preTaxPay - allowance) * 0.08;
     var postTax = preTaxPay - tax - nationalInsurance;
+
+    // If the user doesn't enter any overtime, hide the overtime container
+    if (fridayOTPay === 0 && saturdayOTPay === 0 && sundayOTPay === 0){
+      hasOvertime = false;
+      $('.overtime-container').hide();
+      $('#has-overtime').show();
+    }
+
     showUsersPay(preTaxPay, tax, nationalInsurance, postTax);
-    
   }  
 })
 
