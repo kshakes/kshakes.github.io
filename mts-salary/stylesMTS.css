@@ -55,13 +55,16 @@ body {
 input {
     height: 30px;
     font-size: 18px;
-    border: none;
     background-color: #2c99ec;
     text-align: center;
     border-radius: 4px;
-    border: 2px solid black;
+    border: 2px solid white;
     display: block;
     width: 100%;
+}
+
+input:hover{
+    cursor: pointer;
 }
 
 .input-box {
