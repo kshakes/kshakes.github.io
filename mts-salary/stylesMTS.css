@@ -1,15 +1,15 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-h1, h2, h3, input{
+h1, h2, h3, input {
     color: white;
     font-weight: lighter;
 }
 
-.page-title{
+.page-title {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,161 +26,288 @@ body {
 
 .container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    min-width: 400px;
-    border: 2px solid black;
-    border-radius: 25px;
-    background-color: #1871b5;
-    box-shadow: 5px 5px #434343;
 }
 
-.input-container{
+/* ===== Enhanced Salary Calculator Container ===== */
+.calculate-salary-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    flex-direction: column; 
-    width: 100%; 
-    height: auto; 
-    margin: 10px 0; 
+    width: 380px;
+    padding: 25px 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0065ad, #1a75c8);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: none;
+    color: #fff;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
+/* Title Section */
+.calculate-salary-container .page-title h1 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
-input {
-    height: 30px;
-    font-size: 18px;
-    background-color: #2c99ec;
-    text-align: center;
-    border-radius: 4px;
-    border: 2px solid white;
-    display: block;
-    width: 100%;
-}
-
-input:hover{
-    cursor: pointer;
-}
-
-.input-box {
+/* Inputs */
+.calculate-salary-container input {
+    background: #f9f9f9;
+    color: #333;
+    font-size: 17px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 6px;
     width: 100%;
     max-width: 300px;
-    margin: auto;
+    margin: 6px auto;
     text-align: center;
 }
 
-.title {
+/* Placeholder */
+.calculate-salary-container input::placeholder {
+    color: #888;
+}
+
+/* Buttons */
+.calculate-salary-container .btn {
+    background: #2c99ec;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 12px;
+    padding: 10px;
+    max-width: 300px;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.calculate-salary-container .btn:hover {
+    background: #4ea5e8;
+}
+
+.overtime-container {
+    display: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
     text-align: center;
 }
 
-.btn{
+/* ===== Budget Container ===== */
+.make-budget-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 400px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0065ad, #1a75c8);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.budget-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* ===== Enhanced Salary Display Container ===== */
+.show-salary-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    padding: 20px;
+    background: linear-gradient(135deg, #0065ad, #2a5298);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: none;
+    position: absolute;
+    z-index: 10;
+    color: #fff;
+    text-align: center;
+}
+
+/* Title */
+.show-salary-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* Salary rows */
+.show-salary-container h2 {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* Specific colors for salary values */
+#totalPay {
+    font-size: 20px;
+    font-weight: bold;
+    color: lightgreen;
+}
+#preTaxPay { color: orange; }
+#nIDeduct, #taxDeduct, #pension { color: red; }
+
+/* Back button */
+.show-salary-container .backButton {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #2c99ec;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.show-salary-container .backButton:hover {
+    background: #4ea5e8;
+}
+
+/* ===== Buttons Shared Style ===== */
+.btn {
     width: 100%;
     height: 40px;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    max-width: 300px; 
+    max-width: 300px;
     background-color: #2c99ec;
     border: 2px solid black;
     font-size: 16px;
-    color: white; 
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.btn:hover{
-    background-color: #4ea5e8;
-    animation: background-color 0.5s ease-in-out;
-    color: rgb(220, 220, 220)
-}
-
-#totalPay{
-    margin-top: 1rem;
-    color: lightgreen;
-}
-#preTaxPay{
-    color: orange;
-}
-#nIDeduct, #taxDeduct, #pension{
-    color: red;
-}
-
-.show-salary-container{
-    display: flex;
-    width: 300px;
-    border: 3px solid black;
-    z-index: 1;
-    position: absolute;
-    align-items: center;
-    flex-direction: column;
-    background-color: #2c99ec;
-}
-.show-salary-container > h2{
-    margin-top: 1rem;
-}
-.backButton{
-    height: 3rem;
-    width: 100%;
-    margin-top: 1rem;
-    font-size: 16px;
-    background-color: #0065ad;
-    border: none;
     color: white;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+.btn:hover {
+    background-color: #4ea5e8;
+    color: rgb(220, 220, 220);
 }
 
-@media (max-width: 600px) {
-    .container {
-        min-width: 95%; 
-        padding: 10px; 
-    }
-
-    input {
-        font-size: 16px; 
-        height: 24px; 
-    }
-
-    .calculate-salary {
-        height: 60px;
-    }
+/* ===== Enhanced Budget Modal ===== */
+#budget-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #0065ad, #2a5298);
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    width: 320px;
+    max-width: 90%;
+    text-align: center;
+    border: none;
 }
 
-.shake{
-    animation: shake 0.5s ease-in-out;
-    background-color: #e04a3f;
+/* Modal Title */
+#budget-modal h3 {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
-@keyframes shake{
-    0%{
-        transform: translateX(0);
-    }
-    25%{
-        transform: translateX(-5px);
-    }
-    50%{
-        transform: translateX(5px);
-    }
-    75%{
-        transform: translateX(-5px);
-    }
-    100%{
-        transform: translateX(0);
-    }
-}
-
+/* Modal Inputs */
 #budget-modal input {
-    margin: 5px 0;
+    margin: 8px 0;
     width: 100%;
-    padding: 5px;
-    border: 2px solid #0065ad;
-    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    background: #f9f9f9;
+    color: #333;
+}
+#budget-modal input::placeholder {
+    color: #888;
 }
 
+/* Modal Buttons */
 #budget-modal button {
-    margin: 5px;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #2c99ec;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+#budget-modal button:hover { background: #4ea5e8; }
+#cancel-budget-item { background: #cc3333; }
+#cancel-budget-item:hover { background: #e04a3f; }
+
+/* ===== Budget Items Styling ===== */
+#budget-legend {
+    width: 97%;
+    max-width: 350px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Each budget item card */
+#budget-legend li {
+    background: #ffffff15;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+#budget-legend:last-child { margin-bottom: 1rem; }
+#budget-legend li span.item-text { flex: 1; }
+
+/* Item buttons */
+#budget-legend li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 6px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+#budget-legend li button.edit-item:hover { background: #4ea5e850; }
+#budget-legend li button.delete-item:hover { background: #e04a3f70; }
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    .container { min-width: 95%; padding: 10px; }
+    input { font-size: 16px; height: 24px; }
+    .calculate-salary { height: 60px; }
+}
+
+/* Shake Animation */
+.shake { animation: shake 0.5s ease-in-out; background-color: #e04a3f; }
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
 }
