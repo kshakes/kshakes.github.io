@@ -18,6 +18,7 @@ $(document).ready(function () {
       $('.overtime-container').hide();
     }
 
+    $(".make-budget-container").hide(); // Hide the budget container until the salary is calculated
     $(".calculate-salary").click(function(){
       // When the calculate-salary button is clicked, grab the text or the placeholder
       var rate = $("#hourly-rate-text").val() || $("#hourly-rate-text").attr("placeholder");
@@ -51,6 +52,7 @@ $(document).ready(function () {
           $('.overtime-container').hide();
           $('#has-overtime').show();
         }
+
 
         showUsersPay(preTaxPay, tax, nationalInsurance, netPay);
       }  
@@ -104,22 +106,35 @@ $(document).ready(function () {
 
     $(".backButton").click(function(){
       $('.show-salary-container').fadeOut("slow"); // make it disappear
+      $('.budgetButton').show(); // Show the budget button when the salary is calculated
+      $(".calculate-salary-container").fadeIn("slow"); // Show the salary calculation container
+    });
+
+    $('#return-to-calculator').click(function(){
+      $('.calculate-salary-container').fadeIn("slow"); // make it disappear
+      $('.budgetButton').show(); // Show the budget button when the salary is calculated
+      $('.make-budget-container').fadeOut('fast'); // Hide the budget container
     });
 
     $('#has-overtime').click(function(){
       hasOvertime = !hasOvertime;
       if (hasOvertime === true){
-        $('.overtime-container').css('display', 'flex');
+        $('.overtime-container').show();
         $('#has-overtime').hide();
       }
     });
 
     // Show budget planner
     $(".budgetButton").on("click", function () {
+        // Hide salary calculation and results
+        $(".calculate-salary-container").hide();
         $(".show-salary-container").hide();
-        $("#budget-container").show();
-        renderChart();
-        updateRemainingBudget();
+
+        // Show budget container
+        $(".make-budget-container").css("display", "flex");
+        $("#budget-modal").hide(); // Hide modal initially
+        renderChart(netPay);
+        updateRemainingBudget(netPay);
     });
 
     // Render ApexCharts Donut Chart
@@ -182,19 +197,21 @@ $(document).ready(function () {
 
     // Render Legend with Edit/Delete options
     function renderLegend() {
-        const legend = $("#budget-legend");
-        legend.empty();
-        budgetItems.forEach((item, index) => {
-            const li = $(`
-                <li>
-                    ${item.category}: £${item.amount.toFixed(2)}
+    const legend = $("#budget-legend");
+    legend.empty();
+    budgetItems.forEach((item, index) => {
+        legend.append(`
+            <li>
+                <span class="item-text">${item.category}: £${item.amount.toFixed(2)}</span>
+                <div class="item-actions">
                     <button class="edit-item" data-index="${index}">✏️</button>
                     <button class="delete-item" data-index="${index}">🗑️</button>
-                </li>
-            `);
-            legend.append(li);
-        });
-    }
+                </div>
+            </li>
+        `);
+    });
+  } 
+
 
     // Add new budget item
     $("#add-budget-item").on("click", function () {
