@@ -172,3 +172,15 @@ input:hover{
         transform: translateX(0);
     }
 }
+
+#budget-modal input {
+    margin: 5px 0;
+    width: 100%;
+    padding: 5px;
+    border: 2px solid #0065ad;
+    border-radius: 4px;
+}
+
+#budget-modal button {
+    margin: 5px;
+}
