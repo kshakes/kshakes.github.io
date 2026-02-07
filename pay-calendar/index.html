@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WorkTracker Pro</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --worked: #16a34a; 
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 100px; /* Space for scrolling */
+        }
+
+        /* --- Header & Summary --- */
+        .summary-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat-box h2 { font-size: 2rem; margin: 0; color: var(--primary); }
+        .stat-box span { font-size: 0.85rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* --- Calendar Controls --- */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 15px;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        .current-month { font-size: 1.1rem; font-weight: 700; }
+
+        /* --- Calendar Grid --- */
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+
+        .day-label {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #94a3b8;
+            padding-bottom: 5px;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            background: var(--card-bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .day.worked {
+            background-color: var(--worked);
+            color: white;
+            box-shadow: 0 2px 4px rgba(22, 163, 74, 0.3);
+        }
+        
+        .day.today { border: 2px solid var(--primary); }
+
+        /* --- The Ledger (List View) --- */
+        .ledger-container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .ledger-header {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ledger-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ledger-item {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            cursor: pointer; /* Suggests editability */
+        }
+
+        .ledger-date { font-weight: 700; color: var(--text); display: block; margin-bottom: 4px; }
+        .ledger-time { font-size: 0.9rem; color: #64748b; display: block; }
+        .ledger-hours { font-weight: 700; color: var(--worked); font-size: 1.1rem; }
+
+        /* --- Modal (Popup) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 320px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .modal h3 { margin-top: 0; }
+
+        .time-inputs {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .input-group { display: flex; flex-direction: column; text-align: left; width: 48%; }
+        .input-group label { font-size: 0.8rem; font-weight: bold; color: #64748b; margin-bottom: 5px; }
+        input[type="time"] {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #f8fafc;
+        }
+
+        .modal-actions { display: flex; flex-direction: column; gap: 10px; }
+        
+        .btn { border: none; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 1rem; cursor: pointer; width: 100%; }
+        .btn-save { background: var(--primary); color: white; }
+        .btn-delete { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
+        .btn-cancel { background: #e2e8f0; color: #475569; }
+
+    </style>
+</head>
+<body>
+
+    <div class="summary-card">
+        <div class="stat-box">
+            <h2 id="totalDays">0</h2>
+            <span>Days</span>
+        </div>
+        <div class="stat-box">
+            <h2 id="totalHours">0</h2>
+            <span>Hours</span>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="nav-btn" onclick="changeMonth(-1)">&#8592;</button>
+        <span class="current-month" id="monthDisplay">Month Year</span>
+        <button class="nav-btn" onclick="changeMonth(1)">&#8594;</button>
+    </div>
+
+    <div class="calendar" id="calendar"></div>
+
+    <div class="ledger-container">
+        <div class="ledger-header">
+            <span>Work Log</span>
+            <button onclick="exportData()" style="background:none; border:none; color:var(--primary); font-weight:bold; cursor:pointer;">Export CSV</button>
+        </div>
+        <div class="ledger-list" id="ledgerList">
+            </div>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <h3 id="modalDateTitle">Date</h3>
+            <div class="time-inputs">
+                <div class="input-group">
+                    <label>Start</label>
+                    <input type="time" id="startTime" value="09:00">
+                </div>
+                <div class="input-group">
+                    <label>End</label>
+                    <input type="time" id="endTime" value="17:00">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-save" onclick="saveWorkEntry()">Save Entry</button>
+                <button class="btn btn-delete" onclick="deleteWorkEntry()">Clear / Delete</button>
+                <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State Management
+        let currentDate = new Date();
+        let selectedDateKey = null; // Stores date currently being edited
+        let workData = JSON.parse(localStorage.getItem('workData_v2')) || {}; 
+        /* Data Structure:
+           "2023-10-25": { 
+               start: "09:00", 
+               end: "17:00", 
+               hours: 8 
+           }
+        */
+
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        // --- Core Functions ---
+
+        function renderApp() {
+            renderCalendar();
+            renderLedger();
+            updateStats();
+        }
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            document.getElementById('monthDisplay').innerText = `${monthNames[month]} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const calendarEl = document.getElementById('calendar');
+            calendarEl.innerHTML = '';
+
+            // Labels
+            ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].forEach(d => {
+                calendarEl.innerHTML += `<div class="day-label">${d}</div>`;
+            });
+
+            // Empty slots
+            for (let i = 0; i < firstDay; i++) {
+                calendarEl.innerHTML += `<div></div>`;
+            }
+
+            // Days
+            const today = new Date();
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayKey = formatDateKey(year, month, i);
+                const entry = workData[dayKey];
+                const isToday = (i === today.getDate() && month === today.getMonth() && year === today.getFullYear());
+
+                const dayEl = document.createElement('div');
+                dayEl.className = `day ${entry ? 'worked' : ''} ${isToday ? 'today' : ''}`;
+                dayEl.innerText = i;
+                dayEl.onclick = () => openModal(dayKey); // Open modal instead of instant toggle
+                calendarEl.appendChild(dayEl);
+            }
+        }
+
+        function renderLedger() {
+            const listEl = document.getElementById('ledgerList');
+            listEl.innerHTML = '';
+
+            // Get keys, sort them (Newest first for easy viewing)
+            const keys = Object.keys(workData).sort().reverse();
+            
+            // Filter keys to show ONLY current visible month? 
+            // Better to show all recent work for audit purposes, but let's stick to current month for clarity
+            const currentMonthPrefix = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+            const monthKeys = keys.filter(k => k.startsWith(currentMonthPrefix));
+
+            if (monthKeys.length === 0) {
+                listEl.innerHTML = '<div style="text-align:center; color:#94a3b8; padding:20px;">No work logged this month.</div>';
+                return;
+            }
+
+            monthKeys.forEach(key => {
+                const item = workData[key];
+                const dateObj = new Date(key);
+                const readableDate = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+                const itemEl = document.createElement('div');
+                itemEl.className = 'ledger-item';
+                itemEl.onclick = () => openModal(key); // Click list item to edit
+                itemEl.innerHTML = `
+                    <div>
+                        <span class="ledger-date">${readableDate}</span>
+                        <span class="ledger-time">${item.start} - ${item.end}</span>
+                    </div>
+                    <span class="ledger-hours">${item.hours}h</span>
+                `;
+                listEl.appendChild(itemEl);
+            });
+        }
+
+        function updateStats() {
+            // Calculate totals for currently displayed month
+            const currentMonthPrefix = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+            const keys = Object.keys(workData).filter(k => k.startsWith(currentMonthPrefix));
+            
+            let totalHours = 0;
+            keys.forEach(k => {
+                totalHours += parseFloat(workData[k].hours);
+            });
+
+            document.getElementById('totalDays').innerText = keys.length;
+            document.getElementById('totalHours').innerText = totalHours.toFixed(1);
+        }
+
+        // --- Interaction Logic ---
+
+        function openModal(dateKey) {
+            selectedDateKey = dateKey;
+            document.getElementById('modalDateTitle').innerText = new Date(dateKey).toDateString();
+            document.getElementById('modal').style.display = 'flex';
+
+            if (workData[dateKey]) {
+                document.getElementById('startTime').value = workData[dateKey].start;
+                document.getElementById('endTime').value = workData[dateKey].end;
+            } else {
+                // Defaults
+                document.getElementById('startTime').value = "09:00";
+                document.getElementById('endTime').value = "17:00";
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            selectedDateKey = null;
+        }
+
+        function saveWorkEntry() {
+            if (!selectedDateKey) return;
+
+            const start = document.getElementById('startTime').value;
+            const end = document.getElementById('endTime').value;
+            
+            // Calculate duration
+            const duration = calculateHours(start, end);
+
+            workData[selectedDateKey] = {
+                start: start,
+                end: end,
+                hours: duration
+            };
+
+            saveToStorage();
+            closeModal();
+            renderApp();
+        }
+
+        function deleteWorkEntry() {
+            if (selectedDateKey && workData[selectedDateKey]) {
+                delete workData[selectedDateKey];
+                saveToStorage();
+            }
+            closeModal();
+            renderApp();
+        }
+
+        // --- Utilities ---
+
+        function calculateHours(start, end) {
+            const [startH, startM] = start.split(':').map(Number);
+            const [endH, endM] = end.split(':').map(Number);
+            
+            const startDate = new Date(0, 0, 0, startH, startM);
+            const endDate = new Date(0, 0, 0, endH, endM);
+            
+            let diff = endDate - startDate;
+            if (diff < 0) diff += 24 * 60 * 60 * 1000; // Handle overnight shifts
+            
+            return (diff / 1000 / 60 / 60).toFixed(2); // Return decimal hours
+        }
+
+        function formatDateKey(year, month, day) {
+            return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        }
+
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            renderApp();
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('workData_v2', JSON.stringify(workData));
+        }
+
+        function exportData() {
+            let csv = "Date,Start Time,End Time,Total Hours\n";
+            Object.keys(workData).sort().forEach(key => {
+                const item = workData[key];
+                csv += `${key},${item.start},${item.end},${item.hours}\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('hidden', '');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'work_log.csv');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Init
+        renderApp();
+
+    </script>
+</body>
+</html>
