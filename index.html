@@ -10,25 +10,57 @@
       <link href="styles.css" rel="stylesheet">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-      <script src="/index.js" type="text/javascript"></script>
-
+      <!-- Add a feature where i can write some sections in a json file and the script reads it and makes them so the
+       code is less repetitive. -->
       <title>Kyle Shakespeare's Website</title>
     </head>
     <body>
-        <header class="top-container">
+      <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#my-skills">Skills</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#my-future-skills">Future Skills</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#project-preview">Project Previews</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#certifications">Certifications</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#virtual-work-experience">Virtual Work Experience</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+        <div class="top-container">
             <h1 id="introduction">Hi, I'm Kyle.</h1>
             <h2 id="my-passion">Welcome to my website!</h2>
-        </header>
+        </div>
         <section class="mid-container">
             <p id="credit">Designed by <a href="https://www.freepik.com/" title="Freepix">Freepix</a></p>
             <div class="p-5 text-center bg-body-tertiary">
                 <div class="container py-5">
                     <img id="profile-picture" src="./images/me.jpg" height="150" alt="Kyle Shakespeare's profile picture">
                     <h2 class="mt-3">Hello!</h2>
-                    <p class="col-lg-8 mx-auto lead"> I'm a 2nd year student at Aberystwyth studying Accounting and Finance and Computing. My aspiration is to work in finance or tech. 
-                    </p>
+                    <p class="col-lg-8 mx-auto lead"> I'm Kyle Shakespeare, a 3rd year Accounting and Finance and Computing student at Aberystwyth. I enjoy stock market analysis, building wealth through investing, and building tools to help people with finances.</p>
+                    <br>
+                    <p class="col-lg-8 mx-auto lead">My career goal is to apply my skills in data analysis, programming, and financial modeling in roles such as 
+                    <strong>Quantitative Analysis</strong>, <strong>Asset Management</strong>, or <strong>Accounting</strong>, 
+                    where I can contribute to data-driven decision making and innovative financial solutions.</p>
                 </div>
                 <div class="container">
                   <div class="row">
@@ -46,22 +78,23 @@
         </section>
 
         <section class="container px-4 py-5 text-center" id="featured-3">
-          <h1 class="pb-2 border-bottom">My Skills</h1>
+          <h1 class="pb-2 border-bottom" id="my-skills">My Skills</h1>
           <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div class="feature col">
               <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
                 <img class="bi" src="./images/dataAnalysis.webp" height="125px" alt="Data Analysis">
               </div>
               <h2 class="fs-2">Data Analysis</h2>
-              <p>Using quantitative methods to perform statistical analysis.</p>
-              <p>Improved my numerical and mathematical skills to solve problems in the context of finance, economics and business.</p>
+              <p>Using quantitative methods to perform statistical analysis. <br>
+              Improved my numerical and mathematical skills to solve problems in the context of finance, economics and business.
+              </p>
             </div>
             <div class="feature col">
               <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
                 <img class="bi" src="./images/accounting.webp" height="125px" alt="Accounting">
               </div>
               <h2 class="fs-2">Accounting</h2>
-              <p><strong>Financial Accounting:</strong> Creating Cash Flow, Income Statement and Balance Sheet from information on a Trial Balance, SAGE Accounting Software, Partnership Accounting, Inventory.</p> 
+              <p><strong>Financial Accounting:</strong> Creating financial statements from a Trial Balance, SAGE Accounting Software, Partnership Accounting, Inventory.</p> 
               <p><strong>Management Accounting:</strong> Calculating Overheads, Performing Cost Volume Profit Analysis, Using accounting data for decision making</p>
             </div>
             <div class="feature col">
@@ -69,14 +102,71 @@
                 <img class="bi" src="./images/web-development.gif" height="125px" alt="Web Development">
               </div>
               <h2 class="fs-2">Web Development</h2>
-              <p>HTML5, CSS, JavaScript, jQuery, Express.js, EJS, API's, SQL/PostgreSQL</p>
-              <p><strong>Upcoming Skills:</strong> React.js, Web3 DApp Developmen</p>
+              <p>HTML5, CSS, JavaScript, jQuery, Express.js, EJS, API's, SQL/PostgreSQL, React.js</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="container px-4 text-center" id="featured-3">
+          <h1 class="pb-2 border-bottom" id="my-future-skills">Future Skills / Modules</h1>
+          <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col">
+              <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                <img class="bi" src="./images/machine-learning.gif" height="125px" alt="Data Analysis">
+              </div>
+              <h2 class="fs-2">Machine Learning</h2>
+              <div style="text-align: left;">
+                <details>
+                    <summary>During this module, I will cover:</summary>
+                    <ul>
+                      <li>Classification and Regression trees</li>
+                      <li>Bayesian learning</li>
+                      <li>Artificial Neural Networks</li>
+                      <li>Support Vector Machines</li>
+                      <li>Reinforcement Learning</li>
+                    </ul>
+                </details>
+                <p>As the finance industry continues using artificial intelligence to assist with accounting or using machine learning to do rapid algorithmic trading, machine learning will play a huge part in making sure it makes the best decision with all the available information. </p>
+                <p>Machine learning is something I have always wanted to learn but never knew how or where to start. Fortunately, this module will guide me through the fundamental concepts of machine learning, which I can then apply to future finance based projects to give me a hedge as an applicant.</p>
+              </div>
+            </div>
+            <div class="feature col">
+              <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                <img class="bi" src="./images/group-accounting.gif" height="125px" alt="Accounting">
+              </div>
+              <h2 class="fs-2">Group Accounting</h2>
+              <div style="text-align: left;">
+                <p>Group Accounting is the process of combining financial accounts between parent companies and their subsidiaries.</p> 
+                <p>During this module, we will compare and understand the different methods of group accounting. This includes current methods and previous methods that are no longer in use. This will be a great way to learn from the mistakes of prior methodology to ensure we dont fall into bad practices.</p>
+              </div>
+            </div>
+            <div class="feature col">
+              <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                <img class="bi" src="./images/portfolio-theory.gif" height="125px" alt="Web Development">
+              </div>
+              <h2 class="fs-2">Portfolio Theory</h2>
+              <div style="text-align: left;">
+                <details>
+                <summary>This module will educate me on:</summary>
+                <ul>
+                  <li>Total Risk Measure</li>
+                  <li>Risk-return paradigm</li>
+                  <li>Risk Aversion and Risk-averse investor's portfolio choice</li>
+                  <li>Combining risky assets</li>
+                  <li>Risk free assets</li>
+                  <li>Market line and portfolio</li>
+                </ul>
+              </details>
+              <p>I'm very excited to take this module as investing and researching risk is something I enjoy. Something that is really important in a financial advisory role or an asset managers role is risk. Learning risk aversion and the risk-return paradigm will be vital knowledge to be able to correctly advise clients on how to safely and effectively grow their wealth.</p>
+              <p>I am also very interested in "combining risky assets". Risk is something as a young male that I like to slighlty expose myself to in the markets, mainly prioritising compound growth in safer funds during the most important decade of my life for my wealth to compound. Everyone has their own risk tolerance in their portfolios, and knowing how to balance it with assets that will hedge against inflation, and potentially placing funds within more emerging markets and technologies is key to a diverse portfolio.</p>
+              </div>
+              
             </div>
           </div>
         </section>
 
         <section class="container px-4 py-5" id="custom-cards">
-          <h1 class="pb-2 border-bottom text-center">Projects Preview</h1>
+          <h1 class="pb-2 border-bottom text-center" id="project-preview">Projects Preview</h1>
           <p class="text-center"><em>Hover the titles to see previews of the projects! (or tap them on mobile)</em></p>
           <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
 
@@ -89,18 +179,19 @@
               </div>
             </div>
             <div class="col">
-              <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-color: #272932;">
+              <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-color: #5c99fa;">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                  <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold secondProject">Life Calculator</h3>
-                  <p>This is my first big Java project which features FXML. This allows you to visualise your salary and calculate recommended car and house expenses. It also shows how much you will need to create a certain emergency fund and works out how much you can have in retirement based on your current age and consistent investing + compound interest.</p>
+                  <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold secondProject">All-in-one Portfolio Tracker</h3>
+                  <p>This is an in-progress, large scale project I am working on. As someone who owns multiple asset types, I find it hard to track it all in one area. This is where this app is useful. It will track all asset types and give detailed analysis of the users portfolio. This project doesn't plan on having actual access to users portfolios, but you will be able to manually or automatically upload transactions and track your growth over time.</p>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-color: #5c99fa;">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1 text-white">
-                  <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold thirdProject">Unofficial MTS Salary Calculator</h3>
+                  <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold thirdProject">Unofficial MTS Salary  and Budget Calculator</h3>
                   <p>This was my first project I created with HTML, and JavaScript/jQuery. My idea was to create a basic project with a business specific style that can be used by anyone <em>(even if not working at micheldever)</em>. I experimented with Micheldevers colour scheme and tried to make it as simple as possible.</p>
+                  <p>The user can now budget based off their forecasted salary with the help of ApexCharts to visualise the data.</p>
                 </div>
               </div>
             </div>
@@ -108,50 +199,26 @@
           <h2 class="text-center"><a href="./Projects/projects.html" title="Explore more of Kyle Shakespeare's projects" target="_blank"> All Projects! </a></h2>
         </section>
         
+        <!-- Certifications -->
         <section class="album py-5 bg-body-tertiary">
           <div class="container">
-            <h1 class="pb-3 border-bottom text-center">Certificates</h1>
-            <div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <div class="wrapper">
-                    <img height="400" src="./certificates/master-excel.png" alt="Master Microsoft Excel Certificate">
-                  </div>
-                  <div class="card-body">
-                    <h2>Master Microsoft Excel</h2>
-                    <a href="https://www.linkedin.com/learning/paths/master-microsoft-excel?u=107524890" title="View Master Microsoft Excel Certificate" target="_blank">Source</a>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col">
-                <div class="card shadow-sm"> 
-                  <div class="wrapper">
-                    <img height="400" src="./certificates/gpt-for-web-dev.png" alt="ChatGPT For Web Developers Certificate">
-                  </div>
-                  <div class="card-body">
-                    <h2>ChatGPT For Web Developers</h2>
-                    <a href="https://www.linkedin.com/learning/chatgpt-for-web-developers/accelerate-your-web-development-process?u=107524890" title="View ChatGPT For Web Developers Certificate" target="_blank">Source</a>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col">
-                <div class="card shadow-sm">
-                  <div class="wrapper">
-                    <img height="400" src="./certificates/sir-julian-hodge.jpg" alt="Sir Julian Hodge Prize for First Year Accounting">
-                  </div>
-                  <div class="card-body">
-                    <h2>Sir Julian Hodge Prize for First Year Accounting</h2>
-                    <p>Awarded by Professor Nigel Copner - Head of Aberystwyth Business School <br>This is awarded for achieving the top 5 highest mark in accounting for first year.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h1 class="pb-3 border-bottom text-center" id="certifications">Certifications</h1>
+            <div id="certifications-grid" class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2"></div>
           </div>
         </section>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Virtual Work Experience -->
+        <section class="album py-5 bg-body-tertiary">
+          <div class="container">
+            <h1 class="pb-3 border-bottom text-center" id="virtual-work-experience">Virtual Work Experience</h1>
+            <div id="vwe-grid" class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2"></div>
+          </div>
+        </section>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+        <script src="/index.js" type="text/javascript"></script>
+
     </body>
 </html>

@@ -1,0 +1,93 @@
+{
+  "certifications": [
+    {
+      "title": "Sir Julian Hodge Prize for First Year Accounting",
+      "issuer": "Aberystwyth Business School",
+      "image": "./certificates/sir-julian-hodge.jpg",
+      "imageHeight": 600,
+      "alt": "Sir Julian Hodge Prize for First Year Accounting",
+      "summaryHtml": "Awarded by Professor Nigel Copner - Head of Aberystwyth Business School.<br>Top 5 first-year accounting mark."
+    },
+    {
+      "title": "LSEG Finance Essentials Certificate",
+      "issuer": "London Stock Exchange Group",
+      "image": "./certificates/LSEG_Certification.jpg",
+      "imageHeight": 600,
+      "alt": "LSEG Finance Essentials Certificate",
+      "summaryHtml": "Awarded by Daniel Maguire.",
+      "details": {
+        "summary": "This course improved my knowledge in:",
+        "bullets": [
+          "FX markets & Global Code of Conduct",
+          "Forex valuation & cross rates",
+          "Forwards, futures & PPP",
+          "Fixed income & equities",
+          "LSEG API"
+        ]
+      }
+    },
+    {
+      "title": "The Complete Full-Stack Web Development Bootcamp",
+      "issuer": "Udemy (Dr Angela Yu)",
+      "image": "./certificates/udemy-web-dev-bootcamp.jpg",
+      "imageHeight": 450,
+      "alt": "Udemy Web Development Bootcamp Certificate",
+      "summaryHtml": "This course has been very important to gaining my web development skills. Prior to this, I had no knowledge on how to build a website and no knowledge of all the different frameworks involved. I can now happily say I am quite confident in using React.js, jQuery, JavaScript, API's, and many more web technologies that can bring great projects together"
+    },
+    {
+      "title": "Master Microsoft Excel",
+      "issuer": "LinkedIn Learning",
+      "image": "./certificates/master-excel.png",
+      "imageHeight": 400,
+      "alt": "Master Microsoft Excel Certificate",
+      "details": {
+        "summary": "Improved my skillset and confidence in:",
+        "bullets": ["Functions", "Formatting", "Charting", "Lookups/Index/Match", "Macros & VBA", "Conditionals", "Statistics"]
+      },
+      "link": {
+        "href": "https://www.linkedin.com/learning/paths/master-microsoft-excel?u=107524890",
+        "label": "Source"
+      }
+    },
+    {
+      "title": "ChatGPT for Web Developers",
+      "issuer": "LinkedIn Learning",
+      "image": "./certificates/gpt-for-web-dev.png",
+      "imageHeight": 400,
+      "alt": "ChatGPT For Web Developers Certificate",
+      "summaryHtml": "This course helped me learn and improve my prompt engineering and using AI for Advanced Data Analysis.",
+      "link": {
+        "href": "https://www.linkedin.com/learning/chatgpt-for-web-developers/accelerate-your-web-development-process?u=107524890",
+        "label": "Source"
+      }
+    }
+  ],
+  "virtualWorkExperience": [
+    {
+      "title": "DigData & Experian Money Mule",
+      "image": "./certificates/DigDataExperian.png",
+      "imageHeight": 400,
+      "alt": "DigData & Experian - Money Mule Python Analysis",
+      "summaryHtml": "Analyzed multi-CSV dataset; profiled characteristics of confirmed money mules.",
+      "details": {
+        "summary": "Based on my analysis:",
+        "bullets": [
+          "Majority 46–60 years old",
+          "Gender not predictive",
+          "Loan amount not a clear indicator",
+          "Higher incomes, mid-higher credit scores",
+          "Often students or employed",
+          "Primarily married, mostly renters",
+          "Fewer dependents"
+        ]
+      }
+    },
+    {
+      "title": "Springpod Investment Banking",
+      "image": "./certificates/springpod-investment-banking.png",
+      "imageHeight": 400,
+      "alt": "Springpod Investment Banking",
+      "summaryHtml": "During this course, I learned that the primary focus of investment bakning is to help individuals, corporations, and governements raise capital, whilst securing the value of their original investment. As someone who would like to work within Asset Management, I found that an Elite Boutique Bank would be what I prefer over the other types of investment banks as they offer more specific services. It was also great to hear the different career opportunities, and the core values and skills required to best match the role of an investment banker. Fortunately, investment bankers are mainly young, being between 20-30 years of age, which is a great benefit."
+    }
+  ]
+}
