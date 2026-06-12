@@ -3,13 +3,13 @@ $(document).ready(function() {
         var bgImage = "";
 
         if ($(this).hasClass("firstProject")) {
-            bgImage = "./images/mts-shorts-preview.gif";
+            bgImage = "./images/project-previews/mts-shorts-preview.gif";
             bgSize  = "cover";
         } else if ($(this).hasClass("secondProject")) {
-            bgImage = "./images/portfolio-management-preview.gif";
-            bgSize  = "130%";
+            bgImage = "./images/project-previews/gamified-tracker-preview.gif";
+            bgSize  = "150%";
         } else if ($(this).hasClass("thirdProject")) {
-            bgImage = "./images/mts-salary-preview.gif";
+            bgImage = "./images/project-previews/mts-salary-preview.gif";
             bgSize  = "cover";
         }
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
 });
 
 async function loadContent() {
-  const res = await fetch('/data/content.json', { cache: 'no-cache' });
+  const res = await fetch('./data/content.json', { cache: 'no-cache' });
   if (!res.ok) throw new Error('Failed to load content.json');
   return res.json();
 }
