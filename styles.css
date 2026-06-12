@@ -62,6 +62,10 @@ h2{
     color: #5c99fa !important;
 }
 
+.lead strong, .lead b {
+    color: #005ea6;
+}
+
 a:link{
     text-decoration: none;
 }
