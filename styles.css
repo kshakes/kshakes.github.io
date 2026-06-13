@@ -389,7 +389,7 @@ details[open] summary::before { content: '▾ '; }
   color: #c2cfe0;
   line-height: 1.55;
 }
-.proj-card a.src-link {
+.proj-card .src-link {
   align-self: flex-start;
   margin-top: 4px;
   font-size: 0.68rem;
@@ -398,8 +398,10 @@ details[open] summary::before { content: '▾ '; }
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 2px 8px;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
 }
-.proj-card a.src-link:hover { background: var(--sky); color: var(--navy); border-color: var(--sky); }
+/* Whole card is a link — light up the affordance on card hover */
+.proj-card:hover .src-link { background: var(--sky); color: var(--navy); border-color: var(--sky); }
 
 /* ── SCROLLBAR ────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
